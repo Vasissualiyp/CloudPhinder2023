@@ -540,6 +540,7 @@ def ComputeClouds(filepath , options):
 
 #    print '\t Reading done, iterating over clouds...'
     for k,c in bound_groups.items():
+        start_time = time()
  #       print(len(c), len(np.unique(c)))
         bound_data["Mass"].append(m[c].sum())
         bound_data["NumParticles"].append(len(c))
@@ -568,6 +569,9 @@ def ComputeClouds(filepath , options):
         for k in keys: #range(len(keys)):
 #            k = keys[j]
             Fout[cluster_id].create_dataset('PartType'+str(ptype)+"/"+k, data = particle_data[k].take(c,axis=0))
+        elapsed_time = time() - start_time()
+        print("Elapsed time for timestep {i} is: {elapsed_time}" )
+
         i += 1
 #        print "\t \t ",cluster_id
 
